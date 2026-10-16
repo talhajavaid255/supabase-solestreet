@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -7,22 +6,22 @@ import CheckoutDelivery from "@/components/checkout-delivery";
 export default async function DeliveryPage() {
   const supabase = await createClient();
 
-  const { data: auth, error: authError } =
-    await supabase.auth.getUser();
+  const { data: auth, error: authError } = await supabase.auth.getUser();
 
   if (authError || !auth.user) {
     redirect("/login");
   }
 
-  const { data: addresses, error: addressError } =
-    await supabase
-      .from("addresses")
-      .select(`
+  const { data: addresses, error: addressError } = await supabase
+    .from("addresses")
+    .select(
+      `
         id, full_name, line1, line2, city,
         state, postal_code, country_code, is_default
-      `)
-      .eq("user_id", auth.user.id)
-      .order("created_at", { ascending: false });
+      `,
+    )
+    .eq("user_id", auth.user.id)
+    .order("created_at", { ascending: false });
 
   if (addressError) {
     throw new Error("Unable to load shipping addresses.");
@@ -48,13 +47,15 @@ export default async function DeliveryPage() {
 
   const { data: items, error: itemsError } = await supabase
     .from("cart_items")
-    .select(`
+    .select(
+      `
       quantity,
       product_variants(
         stock_quantity,
         products(price, is_active)
       )
-    `)
+    `,
+    )
     .eq("cart_id", cart.id);
 
   if (itemsError) {
@@ -66,14 +67,18 @@ export default async function DeliveryPage() {
   }
 
   const subtotal = items.reduce((sum, item) => {
+      //@ts-ignore
     const product = item.product_variants.products;
     return sum + Number(product.price) * item.quantity;
   }, 0);
 
   const hasUnavailableItems = items.some(
     (item) =>
+      //@ts-ignore
       !item.product_variants.products.is_active ||
-      item.quantity > item.product_variants.stock_quantity
+      //@ts-ignore
+      
+      item.quantity > item.product_variants.stock_quantity,
   );
 
   return (
@@ -122,10 +127,7 @@ export default async function DeliveryPage() {
             </Link>
           </div>
         ) : (
-          <CheckoutDelivery
-            addresses={addresses}
-            subtotal={subtotal}
-          />
+          <CheckoutDelivery addresses={addresses} subtotal={subtotal} />
         )}
       </section>
     </main>

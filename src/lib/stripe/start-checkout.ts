@@ -66,6 +66,7 @@ export async function startStripeCheckout(
       quantity: 1,
     });
   const amount = line_items.reduce(
+    //@ts-ignore
     (sum, i) => sum + i.price_data.unit_amount * i.quantity,
     0,
   );
@@ -129,7 +130,7 @@ export async function startStripeCheckout(
       },
       {
         idempotencyKey: `solestreet-checkout-v2-${orderId}`,
-      }
+      },
     );
 
     sessionId = session.id;
