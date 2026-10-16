@@ -11,17 +11,30 @@ export default function PaymentResultStatus({ orderId, initial }: { orderId: str
     if (status.status === "paid" || status.status === "cancelled") return;
     let active = true;
     let count = 0;
+    const refreshStatus = async () => {
+      const r = await fetch(`/api/stripe/status?orderId=${encodeURIComponent(orderId)}`, { cache: "no-store" });
+      if (!r.ok) return;
+      const data = await r.json() as Status;
+      if (active) setStatus(data);
+      return data;
+    };
     const poll = async () => {
       if (!active || count++ >= 12) return;
       try {
-        const r = await fetch(`/api/stripe/status?orderId=${encodeURIComponent(orderId)}`, { cache: "no-store" });
-        if (!r.ok) return;
-        const data = await r.json() as Status;
-        if (active) setStatus(data);
+        // Ask Stripe directly for the first few attempts so paid shows even if
+        // the webhook has not reached the app yet. Later polls only read DB.
+        if (count <= 4) {
+          await fetch("/api/stripe/reconcile", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orderId }),
+          });
+        }
+        await refreshStatus();
       } catch { /* network may be temporarily unavailable */ }
     };
     void poll();
-    const interval = setInterval(() => void poll(), 5000);
+    const interval = setInterval(() => void poll(), 2500);
     return () => { active = false; clearInterval(interval); };
   }, [orderId, status.status]);
   const paid = status.status === "paid" && status.payment_status === "paid";
