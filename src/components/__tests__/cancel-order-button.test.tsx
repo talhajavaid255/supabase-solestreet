@@ -29,7 +29,7 @@ describe("CancelOrderButton", () => {
 
   it("cancels the order and refreshes on success", async () => {
     const user = userEvent.setup();
-    cancelDemoOrderMock.mockResolvedValue({ success: true });
+    cancelDemoOrderMock.mockResolvedValue({ success: true, alreadyCancelled: false });
 
     render(<CancelOrderButton orderId="order-1" />);
     await user.click(screen.getByRole("button", { name: "Cancel Demo Order" }));
