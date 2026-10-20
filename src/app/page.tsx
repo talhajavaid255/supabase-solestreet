@@ -46,43 +46,6 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
-      {/* Promotion */}
-      <div className="bg-zinc-950 px-4 py-3 text-center text-xs font-semibold tracking-wide text-white">
-        NEW SEASON COLLECTION · FIND YOUR EVERYDAY FIT
-      </div>
-
-      {/* Navigation */}
-      <header className="border-b border-zinc-200 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-6">
-          <Link
-            href="/"
-            className="text-2xl font-black tracking-tighter text-zinc-950"
-          >
-            SOLESTREET<span className="text-orange-600">.</span>
-          </Link>
-
-          <div className="hidden gap-8 text-sm font-semibold md:flex">
-          <Link href="/products" className="hover:text-orange-600">
-  Products
-</Link>
-            <a href="#collection" className="hover:text-orange-600">Collections</a>
-            <a href="#featured" className="hover:text-orange-600">Featured</a>
-            <Link href="/cart" className="hover:text-orange-600">
-  Cart
-</Link>
-          </div>
-
-          <div className="flex gap-5 text-sm font-semibold">
-            <Link href="/account" className="hover:text-orange-600">
-              Account
-            </Link>
-            <Link href="/login" className="hover:text-orange-600">
-              Login
-            </Link>
-          </div>
-        </nav>
-      </header>
-
       {/* Hero */}
       <section className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-2 lg:py-20">
         <div>

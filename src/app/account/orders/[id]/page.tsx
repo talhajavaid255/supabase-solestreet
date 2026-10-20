@@ -126,35 +126,6 @@ export default async function OrderDetailsPage({
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
-      {/* Header */}
-      <header className="border-b border-zinc-200 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-6">
-          <Link
-            href="/"
-            className="text-2xl font-black tracking-tight text-zinc-950"
-          >
-            SOLESTREET
-            <span className="text-orange-600">.</span>
-          </Link>
-
-          <div className="flex flex-wrap items-center gap-5 text-sm font-semibold">
-            <Link
-              href="/account/orders"
-              className="text-zinc-700 transition hover:text-orange-600"
-            >
-              ← All Orders
-            </Link>
-
-            <Link
-              href="/products"
-              className="text-zinc-700 transition hover:text-orange-600"
-            >
-              Shop
-            </Link>
-          </div>
-        </nav>
-      </header>
-
       {/* Main content */}
       <section className="mx-auto max-w-6xl px-6 py-14">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-600">

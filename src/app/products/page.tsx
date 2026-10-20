@@ -105,33 +105,6 @@ export default async function ProductsPage({
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
-      {/* Header */}
-      <header className="border-b border-zinc-200 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-6">
-          <Link
-            href="/"
-            className="text-2xl font-black tracking-tighter text-zinc-950"
-          >
-            SOLESTREET<span className="text-orange-600">.</span>
-          </Link>
-
-          <div className="flex items-center gap-6 text-sm font-semibold">
-            <Link href="/" className="hover:text-orange-600">
-              Home
-            </Link>
-            <Link href="/products" className="text-orange-600">
-              Shop
-            </Link>
-            <Link href="/cart" className="hover:text-orange-600">
-  Cart
-</Link>
-            <Link href="/account" className="hover:text-orange-600">
-              Account
-            </Link>
-          </div>
-        </nav>
-      </header>
-
       {/* Page Heading */}
       <section className="mx-auto max-w-7xl px-6 pb-8 pt-12">
         <div className="text-sm text-zinc-500">

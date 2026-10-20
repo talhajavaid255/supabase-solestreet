@@ -83,23 +83,15 @@ export default async function DeliveryPage() {
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
-      <header className="border-b border-zinc-200 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-          <Link href="/" className="text-2xl font-black">
-            SOLESTREET<span className="text-orange-600">.</span>
-          </Link>
-
-          <Link
-            href="/cart"
-            className="text-sm font-bold hover:text-orange-600"
-          >
-            ← Back to Bag
-          </Link>
-        </nav>
-      </header>
-
       <section className="mx-auto max-w-6xl px-6 py-12">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
+        <Link
+          href="/cart"
+          className="text-sm font-bold hover:text-orange-600"
+        >
+          ← Back to Bag
+        </Link>
+
+        <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
           SoleStreet Checkout
         </p>
 

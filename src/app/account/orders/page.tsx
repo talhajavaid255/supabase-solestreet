@@ -46,22 +46,6 @@ export default async function OrdersPage() {
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
-      <header className="border-b border-zinc-200 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-6">
-          <Link href="/" className="text-2xl font-black">
-            SOLESTREET
-            <span className="text-orange-600">.</span>
-          </Link>
-
-          <Link
-            href="/account"
-            className="text-sm font-bold hover:text-orange-600"
-          >
-            ← My Account
-          </Link>
-        </nav>
-      </header>
-
       <section className="mx-auto max-w-6xl px-6 py-14">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
           Your SoleStreet Account
