@@ -1,0 +1,18 @@
+---
+description: SoleStreet app map — use only when locating features, routes, or stack choices.
+alwaysApply: false
+---
+
+# SoleStreet
+
+Next.js App Router storefront (`src/app`) with React 19, Tailwind 4, Jest, Supabase, Stripe.
+
+- Auth/session: `src/lib/supabase/`, `src/proxy.ts`, `src/app/login`, `src/app/auth/callback`
+- Cart: `src/app/cart`, `src/components/cart-item-controls.tsx`
+- Checkout/orders: `src/app/checkout`, `src/app/account`, `src/app/api/checkout`
+- Stripe: `src/lib/stripe/`, `src/app/api/stripe`
+- Catalog: `src/app/products`, `src/components/product-*.tsx`
+
+Prefer reading the one files you need. Do not dump Next.js docs into replies. Open `node_modules/next/dist/docs/` only when using an unfamiliar Next API.
+
+Do not read `package-lock.json`, `stripe.exe`, or generated folders.

@@ -1,0 +1,11 @@
+---
+description: Supabase client and RPC usage in SoleStreet.
+globs: src/lib/supabase/**/*.ts,src/app/**/actions.ts
+alwaysApply: false
+---
+
+# Supabase
+
+- Browser: `@/lib/supabase/client`. Server: `@/lib/supabase/server`.
+- Prefer existing RPCs (`add_cart_item`, etc.) over ad-hoc table writes from the app.
+- Never commit secrets. Do not open `.env*` files.

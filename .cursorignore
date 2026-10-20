@@ -1,0 +1,23 @@
+﻿# Generated / heavy folders — keep them out of Agent context
+.next/
+out/
+coverage/
+node_modules/
+.vercel/
+
+# Binary / archive noise
+*.zip
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.pdf
+*.exe
+stripe.exe
+
+# Lockfile is huge and rarely useful as chat context
+package-lock.json
+
+# Public static assets
+public/

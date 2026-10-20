@@ -1,0 +1,13 @@
+---
+description: Next.js App Router conventions for this repo.
+globs: src/app/**/*.{ts,tsx},src/proxy.ts,next.config.ts
+alwaysApply: false
+---
+
+# App Router
+
+- Server Components by default. Add `"use client"` only for interactivity.
+- Mutations live in `"use server"` files (`actions.ts`) or Route Handlers under `src/app/api`.
+- Import with `@/` aliases. Match existing file naming (`kebab-case.tsx`).
+- Auth-aware data: `createClient()` from `@/lib/supabase/server`.
+- Next 16 docs: `node_modules/next/dist/docs/` — read the specific guide, not the whole tree.

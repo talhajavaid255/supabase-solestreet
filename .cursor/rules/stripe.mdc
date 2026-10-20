@@ -1,0 +1,12 @@
+---
+description: Stripe checkout, webhooks, and reconcile flows.
+globs: src/lib/stripe/**/*.ts,src/app/api/stripe/**/*.ts,src/app/checkout/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Stripe
+
+- Server Stripe SDK: `@/lib/stripe/server` and `@/lib/stripe/admin`.
+- Checkout start: `@/lib/stripe/start-checkout`. Session reconcile: `@/lib/stripe/reconcile-session`.
+- Keep webhook and cron handlers idempotent. Do not log full payloads or secret keys.
+- Ignore `stripe.exe` in the repo root.
