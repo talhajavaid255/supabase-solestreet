@@ -83,7 +83,7 @@ export default async function CheckoutPage({
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
-      <section className="mx-auto max-w-6xl px-6 py-12">
+      <section className="page-enter mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/cart"
           className="text-sm font-bold hover:text-orange-600"

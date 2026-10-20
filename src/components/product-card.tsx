@@ -27,7 +27,7 @@ export default function ProductCard({
   )[0];
 
   return (
-    <article className="group">
+    <article className="group product-card-shell">
       <div className="relative overflow-hidden rounded-2xl bg-[#f0eeea]">
         {product.is_featured && (
           <span className="absolute left-4 top-4 z-10 rounded-full bg-white px-3 py-1 text-xs font-bold text-zinc-900 shadow-sm">
@@ -42,7 +42,7 @@ export default function ProductCard({
               alt={image.alt_text || product.name}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="product-card-media object-cover"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-zinc-500">

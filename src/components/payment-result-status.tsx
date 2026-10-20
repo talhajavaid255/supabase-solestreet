@@ -53,7 +53,7 @@ export default function PaymentResultStatus({ orderId, initial }: { orderId: str
   }
   return (
     <main className="min-h-screen bg-[#faf9f6] px-6 py-20 text-zinc-900">
-      <section className="mx-auto max-w-2xl rounded-3xl border border-zinc-200 bg-white p-9 shadow-sm">
+      <section className="page-enter mx-auto max-w-2xl rounded-3xl border border-zinc-200 bg-white p-9 shadow-sm">
         <p className="text-xs font-bold uppercase tracking-widest text-orange-600">SOLESTREET CHECKOUT</p>
         <h1 className="mt-4 text-3xl font-black">{paid ? "Payment successful" : cancelled ? "Checkout expired" : "Payment being verified"}</h1>
         <p className="mt-4 leading-7 text-zinc-600">

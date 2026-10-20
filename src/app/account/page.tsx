@@ -80,7 +80,7 @@ export default async function AccountPage() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           <Link
             href="/account/orders"
-            className="group block rounded-2xl border border-zinc-200 bg-white p-6 transition hover:border-orange-300 hover:shadow-md"
+            className="product-card-shell group block rounded-2xl border border-zinc-200 bg-white p-6 hover:border-orange-300 hover:shadow-md"
           >
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-zinc-950">My Orders</h3>

@@ -46,3 +46,226 @@ a {
   background: #18181b;
   color: white;
 }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gallery-swap {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.page-enter {
+  animation: fade-up 0.55s ease both;
+}
+
+.hero-copy {
+  animation: fade-up 0.7s ease both;
+}
+
+.hero-visual {
+  animation: fade-up 0.8s 0.12s ease both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card-shell {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.product-card-shell:hover {
+  transform: translateY(-6px);
+}
+
+.product-card-shell:hover .product-card-media {
+  transform: scale(1.06);
+}
+
+.product-card-media {
+  transition: transform 0.55s ease;
+}
+
+.pressable {
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.pressable:hover {
+  transform: translateY(-1px);
+}
+
+.pressable:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: #ea580c;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.cart-badge {
+  animation: pop-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.account-menu-panel {
+  transform-origin: top right;
+  animation: menu-in 0.2s ease both;
+}
+
+.gallery-main {
+  animation: gallery-swap 0.4s ease both;
+}
+
+.option-chip {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.option-chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.option-chip:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.qty-btn {
+  transition:
+    background-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: #f4f4f5;
+}
+
+.qty-btn:active:not(:disabled) {
+  transform: scale(0.9);
+}
+
+.adding-pulse {
+  animation: pulse-soft 0.9s ease infinite;
+}
+
+.cart-row {
+  animation: fade-up 0.45s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-enter,
+  .hero-copy,
+  .hero-visual,
+  .reveal,
+  .reveal.is-visible,
+  .product-card-shell,
+  .product-card-media,
+  .pressable,
+  .nav-link::after,
+  .cart-badge,
+  .account-menu-panel,
+  .gallery-main,
+  .option-chip,
+  .qty-btn,
+  .adding-pulse,
+  .cart-row {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

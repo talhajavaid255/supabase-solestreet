@@ -52,7 +52,7 @@ export default function LoginPage() {
         </div>
 
         {/* Login Card */}
-        <div className="rounded-3xl border border-zinc-200 bg-white p-8 text-zinc-900 shadow-xl shadow-zinc-900/5 sm:p-10">
+        <div className="page-enter rounded-3xl border border-zinc-200 bg-white p-8 text-zinc-900 shadow-xl shadow-zinc-900/5 sm:p-10">
           <div className="mb-8">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
               Welcome to SoleStreet
@@ -73,7 +73,7 @@ export default function LoginPage() {
             type="button"
             onClick={signInWithGoogle}
             disabled={loading}
-            className="flex w-full items-center justify-center gap-3 rounded-full bg-zinc-950 px-5 py-4 font-bold text-white transition duration-200 hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+            className={`pressable flex w-full items-center justify-center gap-3 rounded-full bg-zinc-950 px-5 py-4 font-bold text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50 ${loading ? "adding-pulse" : ""}`}
           >
             {/* Google icon */}
             <svg

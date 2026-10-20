@@ -128,18 +128,19 @@ async function handleAddToCart() {
   }
 
   return (
-    <section className="mx-auto grid max-w-7xl gap-12 px-6 py-12 lg:grid-cols-2">
+    <section className="page-enter mx-auto grid max-w-7xl gap-12 px-6 py-12 lg:grid-cols-2">
       {/* Product gallery */}
       <div>
         <div className="relative aspect-square overflow-hidden rounded-3xl bg-zinc-100">
           {mainImage ? (
             <Image
+              key={mainImage.image_url}
               src={mainImage.image_url}
               alt={mainImage.alt_text || product.name}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="gallery-main object-cover"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-zinc-500">
@@ -157,7 +158,7 @@ async function handleAddToCart() {
                 onClick={() => setActiveImage(index)}
                 aria-label={`View product image ${index + 1}`}
                 aria-pressed={activeImage === index}
-                className={`relative h-24 w-24 overflow-hidden rounded-xl border-2 ${
+                className={`option-chip relative h-24 w-24 overflow-hidden rounded-xl border-2 ${
                   activeImage === index
                     ? "border-zinc-950"
                     : "border-transparent"
@@ -215,7 +216,7 @@ async function handleAddToCart() {
                   type="button"
                   onClick={() => selectColor(color)}
                   aria-pressed={selectedColor === color}
-                  className={`rounded-xl border px-5 py-3 text-sm font-bold transition ${
+                  className={`option-chip rounded-xl border px-5 py-3 text-sm font-bold ${
                     selectedColor === color
                       ? "border-zinc-950 bg-zinc-950 text-white"
                       : "border-zinc-300 bg-white text-zinc-900 hover:border-zinc-950"
@@ -244,7 +245,7 @@ async function handleAddToCart() {
                   disabled={outOfStock}
                   onClick={() => selectSize(variant.size)}
                   aria-pressed={selected}
-                  className={`min-w-16 rounded-xl border px-5 py-3 text-sm font-bold transition ${
+                  className={`option-chip min-w-16 rounded-xl border px-5 py-3 text-sm font-bold ${
                     selected
                       ? "border-zinc-950 bg-zinc-950 text-white"
                       : outOfStock
@@ -285,7 +286,7 @@ async function handleAddToCart() {
               type="button"
               onClick={decreaseQuantity}
               disabled={!selectedVariant || quantity <= 1}
-              className="px-5 py-3 text-xl disabled:opacity-30"
+              className="qty-btn px-5 py-3 text-xl disabled:opacity-30"
               aria-label="Decrease quantity"
             >
               −
@@ -299,7 +300,7 @@ async function handleAddToCart() {
               type="button"
               onClick={increaseQuantity}
               disabled={!selectedVariant || quantity >= availableStock}
-              className="px-5 py-3 text-xl disabled:opacity-30"
+              className="qty-btn px-5 py-3 text-xl disabled:opacity-30"
               aria-label="Increase quantity"
             >
               +
@@ -314,7 +315,7 @@ async function handleAddToCart() {
     type="button"
     onClick={handleAddToCart}
     disabled={!selectedVariant || availableStock < 1 || adding}
-    className="w-full rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-40"
+    className={`pressable w-full rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-40 ${adding ? "adding-pulse" : ""}`}
   >
     {adding ? "Adding to cart..." : "Add to Cart →"}
   </button>

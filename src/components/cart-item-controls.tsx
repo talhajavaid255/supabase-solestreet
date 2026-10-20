@@ -73,7 +73,7 @@ export default function CartItemControls({
             onClick={() => update(quantity - 1)}
             disabled={busy || quantity <= 1}
             aria-label="Decrease quantity"
-            className="px-4 py-2 disabled:opacity-30"
+            className="qty-btn px-4 py-2 disabled:opacity-30"
           >
             −
           </button>
@@ -86,7 +86,7 @@ export default function CartItemControls({
             onClick={() => update(quantity + 1)}
             disabled={busy || quantity >= maxStock || quantity >= 99}
             aria-label="Increase quantity"
-            className="px-4 py-2 disabled:opacity-30"
+            className="qty-btn px-4 py-2 disabled:opacity-30"
           >
             +
           </button>

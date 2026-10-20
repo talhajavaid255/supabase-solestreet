@@ -61,13 +61,13 @@ export default async function SiteHeader() {
         </Link>
 
         <div className="flex items-center gap-5 text-sm font-semibold text-zinc-700 sm:gap-7">
-          <Link href="/products" className="hover:text-orange-600">
+          <Link href="/products" className="nav-link hover:text-orange-600">
             Shop
           </Link>
-          <Link href="/cart" className="relative hover:text-orange-600">
+          <Link href="/cart" className="nav-link relative hover:text-orange-600">
             Cart
             {cartCount > 0 ? (
-              <span className="ml-1 inline-flex min-w-5 items-center justify-center rounded-full bg-orange-600 px-1.5 text-[10px] font-bold text-white">
+              <span className="cart-badge ml-1 inline-flex min-w-5 items-center justify-center rounded-full bg-orange-600 px-1.5 text-[10px] font-bold text-white">
                 {cartCount > 99 ? "99+" : cartCount}
               </span>
             ) : null}
@@ -77,7 +77,7 @@ export default async function SiteHeader() {
           ) : (
             <Link
               href="/login"
-              className="rounded-full bg-zinc-950 px-4 py-2 text-white hover:bg-orange-600"
+              className="pressable rounded-full bg-zinc-950 px-4 py-2 text-white hover:bg-orange-600"
             >
               Login
             </Link>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import ProductCard from "@/components/product-card";
+import Reveal from "@/components/reveal";
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -48,7 +49,7 @@ export default async function HomePage() {
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
       {/* Hero */}
       <section className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-2 lg:py-20">
-        <div>
+        <div className="hero-copy">
           <p className="text-sm font-bold uppercase tracking-[0.25em] text-orange-600">
             The new essentials
           </p>
@@ -67,14 +68,14 @@ export default async function HomePage() {
           <div className="mt-8 flex flex-wrap gap-4">
           <Link
   href="/products"
-  className="rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white transition hover:bg-orange-600"
+  className="pressable rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white hover:bg-orange-600"
 >
   Shop Collection ↗
 </Link>
 
             <a
               href="#featured"
-              className="rounded-full border border-zinc-300 px-8 py-4 text-sm font-bold text-zinc-900 transition hover:bg-zinc-100"
+              className="pressable rounded-full border border-zinc-300 px-8 py-4 text-sm font-bold text-zinc-900 hover:bg-zinc-100"
             >
               Explore Featured
             </a>
@@ -87,7 +88,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="relative min-h-[380px] overflow-hidden rounded-3xl bg-[#e9e5dd] sm:min-h-[500px]">
+        <div className="hero-visual relative min-h-[380px] overflow-hidden rounded-3xl bg-[#e9e5dd] sm:min-h-[500px]">
           <Image
             src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400&auto=format&fit=crop&q=85"
             alt="Featured sneaker editorial photograph"
@@ -121,8 +122,10 @@ export default async function HomePage() {
           </div>
 
           <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {featured.map((product, index) => (
+              <Reveal key={product.id} delayMs={index * 80}>
+                <ProductCard product={product} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -150,8 +153,10 @@ export default async function HomePage() {
           )}
 
           <div className="mt-10 grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {products.map((product, index) => (
+              <Reveal key={product.id} delayMs={(index % 6) * 60}>
+                <ProductCard product={product} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -172,7 +177,7 @@ export default async function HomePage() {
           </p>
           <a
             href="#collection"
-            className="mt-8 inline-block rounded-full bg-white px-8 py-4 font-bold text-zinc-950"
+            className="pressable mt-8 inline-block rounded-full bg-white px-8 py-4 font-bold text-zinc-950"
           >
             Discover the Collection
           </a>

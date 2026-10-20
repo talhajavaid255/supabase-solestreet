@@ -131,7 +131,7 @@ export default async function CartPage() {
         ) : !loadError ? (
           <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_340px]">
             <div className="space-y-5">
-              {items.map((item) => {
+              {items.map((item, index) => {
                 const variant = item.product_variants;
                 const product = variant.products;
                 const image = [...product.product_images].sort(
@@ -145,7 +145,8 @@ export default async function CartPage() {
                 return (
                   <article
                     key={item.id}
-                    className="flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white p-5 sm:flex-row"
+                    className="cart-row flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white p-5 sm:flex-row"
+                    style={{ animationDelay: `${Math.min(index, 6) * 50}ms` }}
                   >
                     <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-xl bg-zinc-100 sm:w-44">
                       {image && (
@@ -200,7 +201,7 @@ export default async function CartPage() {
               })}
             </div>
 
-            <aside className="rounded-2xl border border-zinc-200 bg-white p-7 lg:sticky lg:top-8">
+            <aside className="page-enter rounded-2xl border border-zinc-200 bg-white p-7 lg:sticky lg:top-8">
               <h2 className="text-2xl font-black">Order Summary</h2>
 
               <div className="mt-8 flex justify-between text-zinc-600">
@@ -239,7 +240,7 @@ export default async function CartPage() {
 ) : (
   <Link
     href="/checkout"
-    className="mt-8 block w-full rounded-full bg-zinc-950 px-6 py-4 text-center font-bold text-white transition hover:bg-orange-600"
+    className="pressable mt-8 block w-full rounded-full bg-zinc-950 px-6 py-4 text-center font-bold text-white hover:bg-orange-600"
   >
     Proceed to Checkout →
   </Link>

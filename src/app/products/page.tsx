@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import ProductCard from "@/components/product-card";
+import Reveal from "@/components/reveal";
 import { createClient } from "@/lib/supabase/server";
 
 type SearchParams = {
@@ -234,7 +235,7 @@ export default async function ProductsPage({
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-zinc-950 px-5 py-4 text-sm font-bold text-white transition hover:bg-orange-600"
+                className="pressable w-full rounded-full bg-zinc-950 px-5 py-4 text-sm font-bold text-white hover:bg-orange-600"
               >
                 Apply Filters →
               </button>
@@ -281,11 +282,10 @@ export default async function ProductsPage({
             )}
 
             <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
+              {products.map((product, index) => (
+                <Reveal key={product.id} delayMs={(index % 6) * 50}>
+                  <ProductCard product={product} />
+                </Reveal>
               ))}
             </div>
           </div>
