@@ -45,6 +45,10 @@ export default async function HomePage() {
 
   const products = (data ?? []) as unknown as Product[];
   const featured = products.filter((p) => p.is_featured).slice(0, 3);
+  const featuredIds = new Set(featured.map((p) => p.id));
+  const collection = products
+    .filter((p) => !featuredIds.has(p.id))
+    .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-zinc-900">
@@ -147,17 +151,28 @@ export default async function HomePage() {
       {/* All products */}
       <section id="collection" className="py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
-            Find your style
-          </p>
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
+                Find your style
+              </p>
 
-          <h2 className="mt-3 text-4xl font-black tracking-tight">
-            The Collection
-          </h2>
+              <h2 className="mt-3 text-4xl font-black tracking-tight">
+                The Collection
+              </h2>
 
-          <p className="mt-3 text-zinc-500">
-            Explore our latest collection of sneakers and trainers.
-          </p>
+              <p className="mt-3 text-zinc-500">
+                Explore our latest collection of sneakers and trainers.
+              </p>
+            </div>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-1 text-sm font-bold underline underline-offset-4"
+            >
+              View all products
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
 
           {error && (
             <p className="mt-6 text-red-600">
@@ -165,9 +180,9 @@ export default async function HomePage() {
             </p>
           )}
 
-          <div className="mt-10 grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product, index) => (
-              <Reveal key={product.id} delayMs={(index % 6) * 60}>
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            {collection.map((product, index) => (
+              <Reveal key={product.id} delayMs={index * 80}>
                 <ProductCard product={product} />
               </Reveal>
             ))}
