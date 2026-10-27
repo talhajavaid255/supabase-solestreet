@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { ArrowRight, Package } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 
 function statusClasses(status: string) {
@@ -81,16 +82,19 @@ export default async function OrdersPage() {
 
         {!orders || orders.length === 0 ? (
           <div className="mt-12 rounded-3xl border border-zinc-200 bg-white px-6 py-20 text-center">
-            <div className="text-5xl">📦</div>
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 text-zinc-700">
+              <Package className="h-7 w-7" aria-hidden />
+            </div>
             <h2 className="mt-6 text-2xl font-black">No orders yet</h2>
             <p className="mt-3 text-zinc-500">
               Your order history will appear here.
             </p>
             <Link
               href="/products"
-              className="pressable mt-8 inline-block rounded-full bg-zinc-950 px-8 py-4 font-bold text-white hover:bg-orange-600"
+              className="pressable mt-8 inline-flex items-center gap-2 rounded-full bg-zinc-950 px-8 py-4 font-bold text-white hover:bg-orange-600"
             >
-              Explore Shoes →
+              Explore Shoes
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
         ) : (
@@ -185,9 +189,10 @@ export default async function OrdersPage() {
 
                       <Link
                         href={`/account/orders/${order.id}`}
-                        className="pressable inline-flex items-center rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-bold text-white hover:bg-orange-600"
+                        className="pressable inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-bold text-white hover:bg-orange-600"
                       >
                         View details
+                        <ArrowRight className="h-4 w-4" aria-hidden />
                       </Link>
                     </div>
                   </div>

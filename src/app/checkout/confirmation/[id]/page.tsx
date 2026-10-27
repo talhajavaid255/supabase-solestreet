@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -54,8 +55,8 @@ export default async function ConfirmationPage({
         </Link>
 
         <div className="mt-12 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm sm:p-10">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl text-green-700">
-            ✓
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700">
+            <CircleCheck className="h-8 w-8" aria-hidden />
           </div>
 
           <p className="mt-7 text-sm font-bold uppercase tracking-widest text-orange-600">
@@ -142,9 +143,10 @@ export default async function ConfirmationPage({
 
           <Link
             href="/products"
-            className="mt-10 block rounded-full bg-zinc-950 px-8 py-4 text-center font-bold text-white hover:bg-orange-600"
+            className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-8 py-4 text-center font-bold text-white hover:bg-orange-600"
           >
-            Continue Shopping →
+            Continue Shopping
+            <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
       </div>

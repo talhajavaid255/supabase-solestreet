@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { ArrowRight, ChevronRight, MapPin, Truck, CreditCard } from "lucide-react";
 import { saveShippingAddress } from "./actions";
 
 type CheckoutParams = {
@@ -86,9 +87,10 @@ export default async function CheckoutPage({
       <section className="page-enter mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/cart"
-          className="text-sm font-bold hover:text-orange-600"
+          className="inline-flex items-center gap-1.5 text-sm font-bold hover:text-orange-600"
         >
-          ← Back to Bag
+          <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
+          Back to Bag
         </Link>
 
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
@@ -104,13 +106,20 @@ export default async function CheckoutPage({
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
-          <span className="rounded-full bg-zinc-950 px-5 py-2 font-bold text-white">
+          <span className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-2 font-bold text-white">
+            <MapPin className="h-4 w-4" aria-hidden />
             1. Shipping
           </span>
-          <span className="text-zinc-400">→</span>
-          <span className="text-zinc-400">2. Delivery</span>
-          <span className="text-zinc-400">→</span>
-          <span className="text-zinc-400">3. Payment</span>
+          <ChevronRight className="h-4 w-4 text-zinc-400" aria-hidden />
+          <span className="inline-flex items-center gap-2 text-zinc-400">
+            <Truck className="h-4 w-4" aria-hidden />
+            2. Delivery
+          </span>
+          <ChevronRight className="h-4 w-4 text-zinc-400" aria-hidden />
+          <span className="inline-flex items-center gap-2 text-zinc-400">
+            <CreditCard className="h-4 w-4" aria-hidden />
+            3. Payment
+          </span>
         </div>
 
         <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1fr_320px]">
@@ -273,16 +282,18 @@ export default async function CheckoutPage({
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-zinc-950 px-8 py-4 font-bold text-white transition hover:bg-orange-600"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-8 py-4 font-bold text-white transition hover:bg-orange-600"
               >
-                Save Shipping Address →
+                Save Shipping Address
+                <ArrowRight className="h-4 w-4" aria-hidden />
               </button>
               {addresses.length > 0 && (
   <Link
     href="/checkout/delivery"
-    className="mt-6 block rounded-full bg-orange-600 px-6 py-4 text-center text-sm font-bold text-white transition hover:bg-orange-700"
+    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-orange-600 px-6 py-4 text-center text-sm font-bold text-white transition hover:bg-orange-700"
   >
-    Continue to Delivery →
+    Continue to Delivery
+    <ArrowRight className="h-4 w-4" aria-hidden />
   </Link>
 )}
             </form>

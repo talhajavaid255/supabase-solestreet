@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ShoppingBag } from "lucide-react";
 import { addToCart } from "@/app/cart/actions";
 
 type Variant = {
@@ -315,9 +316,10 @@ async function handleAddToCart() {
     type="button"
     onClick={handleAddToCart}
     disabled={!selectedVariant || availableStock < 1 || adding}
-    className={`pressable w-full rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-40 ${adding ? "adding-pulse" : ""}`}
+    className={`pressable inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-40 ${adding ? "adding-pulse" : ""}`}
   >
-    {adding ? "Adding to cart..." : "Add to Cart →"}
+    <ShoppingBag className="h-4 w-4" aria-hidden />
+    {adding ? "Adding to cart..." : "Add to Cart"}
   </button>
 
   {cartError && (

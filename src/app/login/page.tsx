@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
@@ -129,9 +130,10 @@ export default function LoginPage() {
         <div className="mt-8 text-center">
           <Link
             href="/"
-            className="text-sm font-semibold text-zinc-600 transition hover:text-orange-600"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-600 transition hover:text-orange-600"
           >
-            ← Back to shopping
+            <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
+            Back to shopping
           </Link>
         </div>
       </div>

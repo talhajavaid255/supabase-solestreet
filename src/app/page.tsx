@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
+import { ArrowRight, Sparkles, Star, Truck } from "lucide-react";
 import ProductCard from "@/components/product-card";
 import Reveal from "@/components/reveal";
 
@@ -68,23 +69,34 @@ export default async function HomePage() {
           <div className="mt-8 flex flex-wrap gap-4">
           <Link
   href="/products"
-  className="pressable rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white hover:bg-orange-600"
+  className="pressable inline-flex items-center gap-2 rounded-full bg-zinc-950 px-8 py-4 text-sm font-bold text-white hover:bg-orange-600"
 >
-  Shop Collection ↗
+  Shop Collection
+  <ArrowRight className="h-4 w-4" aria-hidden />
 </Link>
 
             <a
               href="#featured"
-              className="pressable rounded-full border border-zinc-300 px-8 py-4 text-sm font-bold text-zinc-900 hover:bg-zinc-100"
+              className="pressable inline-flex items-center gap-2 rounded-full border border-zinc-300 px-8 py-4 text-sm font-bold text-zinc-900 hover:bg-zinc-100"
             >
+              <Sparkles className="h-4 w-4" aria-hidden />
               Explore Featured
             </a>
           </div>
 
           <div className="mt-12 flex flex-wrap gap-8 border-t border-zinc-200 pt-6 text-sm text-zinc-500">
-            <span>Curated footwear</span>
-            <span>Everyday comfort</span>
-            <span>Fresh styles</span>
+            <span className="inline-flex items-center gap-2">
+              <Star className="h-4 w-4 text-orange-600" aria-hidden />
+              Curated footwear
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Truck className="h-4 w-4 text-orange-600" aria-hidden />
+              Everyday comfort
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-orange-600" aria-hidden />
+              Fresh styles
+            </span>
           </div>
         </div>
 
@@ -116,8 +128,9 @@ export default async function HomePage() {
                 Featured Kicks
               </h2>
             </div>
-            <a href="#collection" className="text-sm font-bold underline underline-offset-4">
-              View all products ↗
+            <a href="#collection" className="inline-flex items-center gap-1 text-sm font-bold underline underline-offset-4">
+              View all products
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
           </div>
 
@@ -177,9 +190,10 @@ export default async function HomePage() {
           </p>
           <a
             href="#collection"
-            className="pressable mt-8 inline-block rounded-full bg-white px-8 py-4 font-bold text-zinc-950"
+            className="pressable mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-zinc-950"
           >
             Discover the Collection
+            <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
         </div>
       </section>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import CancelOrderButton from "@/components/cancel-order-button";
+import { ArrowRight, CreditCard } from "lucide-react";
 import ReconcilePaymentButton from "@/components/reconcile-payment-button";
 
 type ShippingAddress = {
@@ -324,9 +325,10 @@ export default async function OrderDetailsPage({
 
                   <Link
                     href={`/account/orders/${order.id}/pay`}
-                    className="mt-5 inline-flex rounded-full bg-zinc-950 px-7 py-3 text-sm font-bold text-white transition hover:bg-orange-600"
+                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-zinc-950 px-7 py-3 text-sm font-bold text-white transition hover:bg-orange-600"
                   >
-                    Pay with Stripe →
+                    <CreditCard className="h-4 w-4" aria-hidden />
+                    Pay with Stripe
                   </Link>
                 </div>
               )}
@@ -417,9 +419,10 @@ export default async function OrderDetailsPage({
 
             <Link
               href="/account/orders"
-              className="mt-7 block w-full rounded-full border border-zinc-300 px-6 py-4 text-center text-sm font-bold text-zinc-900 transition hover:bg-zinc-100"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full border border-zinc-300 px-6 py-4 text-center text-sm font-bold text-zinc-900 transition hover:bg-zinc-100"
             >
-              ← Back to My Orders
+              <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
+              Back to My Orders
             </Link>
           </aside>
         </div>

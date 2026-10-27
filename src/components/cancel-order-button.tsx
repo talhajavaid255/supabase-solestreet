@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { TriangleAlert } from "lucide-react";
 import { cancelDemoOrder } from "@/app/account/orders/actions";
 
 export default function CancelOrderButton({
@@ -47,8 +48,9 @@ export default function CancelOrderButton({
           setError("");
           setOpen(true);
         }}
-        className="rounded-full border border-red-200 px-6 py-3 text-sm font-bold text-red-700 transition hover:bg-red-50"
+        className="inline-flex items-center gap-2 rounded-full border border-red-200 px-6 py-3 text-sm font-bold text-red-700 transition hover:bg-red-50"
       >
+        <TriangleAlert className="h-4 w-4" aria-hidden />
         Cancel Demo Order
       </button>
 
@@ -64,8 +66,8 @@ export default function CancelOrderButton({
             aria-describedby="cancel-description"
             className="w-full max-w-md rounded-3xl bg-white p-8 text-zinc-900 shadow-2xl"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-100 text-2xl text-red-700">
-              !
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-100 text-red-700">
+              <TriangleAlert className="h-7 w-7" aria-hidden />
             </div>
 
             <h2

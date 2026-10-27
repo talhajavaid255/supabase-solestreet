@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ArrowRight, CircleAlert, CircleCheck, LoaderCircle } from "lucide-react";
 
 type Status = { status: string; payment_status: string };
 export default function PaymentResultStatus({ orderId, initial }: { orderId: string; initial: Status }) {
@@ -55,6 +56,9 @@ export default function PaymentResultStatus({ orderId, initial }: { orderId: str
     <main className="min-h-screen bg-[#faf9f6] px-6 py-20 text-zinc-900">
       <section className="page-enter mx-auto max-w-2xl rounded-3xl border border-zinc-200 bg-white p-9 shadow-sm">
         <p className="text-xs font-bold uppercase tracking-widest text-orange-600">SOLESTREET CHECKOUT</p>
+        <div className="mb-2 text-orange-600">
+          {paid ? <CircleCheck className="h-8 w-8" aria-hidden /> : cancelled ? <CircleAlert className="h-8 w-8" aria-hidden /> : <LoaderCircle className="h-8 w-8 animate-spin" aria-hidden />}
+        </div>
         <h1 className="mt-4 text-3xl font-black">{paid ? "Payment successful" : cancelled ? "Checkout expired" : "Payment being verified"}</h1>
         <p className="mt-4 leading-7 text-zinc-600">
           {paid ? "Stripe has confirmed your test payment, and SoleStreet recorded it." :
@@ -68,7 +72,10 @@ export default function PaymentResultStatus({ orderId, initial }: { orderId: str
           {checking ? "Verifying..." : "Verify with Stripe now"}
         </button>}
         {message && <p role="status" className="mt-3 text-sm text-red-700">{message}</p>}
-        <Link className="mt-7 block font-semibold text-orange-600" href={`/account/orders/${orderId}`}>View order →</Link>
+        <Link className="mt-7 inline-flex items-center gap-1.5 font-semibold text-orange-600" href={`/account/orders/${orderId}`}>
+          View order →
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Link>
       </section>
     </main>
   );

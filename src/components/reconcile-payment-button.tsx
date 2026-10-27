@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { RefreshCw } from "lucide-react";
 
 export default function ReconcilePaymentButton({
   orderId,
@@ -62,8 +63,9 @@ export default function ReconcilePaymentButton({
         type="button"
         onClick={reconcilePayment}
         disabled={loading}
-        className="rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-blue-700 disabled:opacity-50"
+        className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-blue-700 disabled:opacity-50"
       >
+        <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} aria-hidden />
         {loading
           ? "Verifying payment..."
           : "Verify Payment with Stripe"}

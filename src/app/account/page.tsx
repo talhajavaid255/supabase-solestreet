@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { ArrowRight, BadgeCheck, Mail, MapPin, Package } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function AccountPage() {
@@ -44,8 +45,9 @@ export default async function AccountPage() {
             </div>
 
             <div>
-              <p className="text-sm font-medium text-green-700">
-                ● Signed in
+              <p className="inline-flex items-center gap-1.5 text-sm font-medium text-green-700">
+                <BadgeCheck className="h-4 w-4" aria-hidden />
+                Signed in
               </p>
               <h2 className="mt-1 text-2xl font-black text-zinc-950">
                 Hello, {displayName}!
@@ -58,7 +60,8 @@ export default async function AccountPage() {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl bg-zinc-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+              <p className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                <Mail className="h-3.5 w-3.5" aria-hidden />
                 Email Address
               </p>
               <p className="mt-3 break-all font-semibold text-zinc-900">
@@ -83,10 +86,11 @@ export default async function AccountPage() {
             className="product-card-shell group block rounded-2xl border border-zinc-200 bg-white p-6 hover:border-orange-300 hover:shadow-md"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-zinc-950">My Orders</h3>
-              <span className="text-xl text-orange-600 transition group-hover:translate-x-1">
-                →
-              </span>
+              <h3 className="inline-flex items-center gap-2 text-lg font-bold text-zinc-950">
+                <Package className="h-5 w-5 text-orange-600" aria-hidden />
+                My Orders
+              </h3>
+              <ArrowRight className="h-5 w-5 text-orange-600 transition group-hover:translate-x-1" aria-hidden />
             </div>
             <p className="mt-3 text-sm leading-6 text-zinc-500">
               View your order history, shipping details, and manage eligible
@@ -98,7 +102,10 @@ export default async function AccountPage() {
           </Link>
 
           <div className="rounded-2xl border border-zinc-200 bg-white p-6">
-            <h3 className="font-bold text-zinc-950">Saved Addresses</h3>
+            <h3 className="inline-flex items-center gap-2 font-bold text-zinc-950">
+              <MapPin className="h-5 w-5 text-orange-600" aria-hidden />
+              Saved Addresses
+            </h3>
             <p className="mt-2 text-sm leading-6 text-zinc-500">
               Manage your shipping and delivery information.
             </p>

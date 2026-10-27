@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogIn, ShoppingBag, Store } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import AccountMenu from "@/components/account-menu";
 
@@ -61,10 +62,18 @@ export default async function SiteHeader() {
         </Link>
 
         <div className="flex items-center gap-5 text-sm font-semibold text-zinc-700 sm:gap-7">
-          <Link href="/products" className="nav-link hover:text-orange-600">
+          <Link
+            href="/products"
+            className="nav-link inline-flex items-center gap-1.5 hover:text-orange-600"
+          >
+            <Store className="h-4 w-4" aria-hidden />
             Shop
           </Link>
-          <Link href="/cart" className="nav-link relative hover:text-orange-600">
+          <Link
+            href="/cart"
+            className="nav-link relative inline-flex items-center gap-1.5 hover:text-orange-600"
+          >
+            <ShoppingBag className="h-4 w-4" aria-hidden />
             Cart
             {cartCount > 0 ? (
               <span className="cart-badge ml-1 inline-flex min-w-5 items-center justify-center rounded-full bg-orange-600 px-1.5 text-[10px] font-bold text-white">
@@ -77,8 +86,9 @@ export default async function SiteHeader() {
           ) : (
             <Link
               href="/login"
-              className="pressable rounded-full bg-zinc-950 px-4 py-2 text-white hover:bg-orange-600"
+              className="pressable inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-white hover:bg-orange-600"
             >
+              <LogIn className="h-4 w-4" aria-hidden />
               Login
             </Link>
           )}

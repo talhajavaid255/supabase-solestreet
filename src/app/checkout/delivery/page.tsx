@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { ArrowRight } from "lucide-react";
 import CheckoutDelivery from "@/components/checkout-delivery";
 
 export default async function DeliveryPage() {
@@ -86,9 +87,10 @@ export default async function DeliveryPage() {
       <section className="mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/cart"
-          className="text-sm font-bold hover:text-orange-600"
+          className="inline-flex items-center gap-1.5 text-sm font-bold hover:text-orange-600"
         >
-          ← Back to Bag
+          <ArrowRight className="h-4 w-4 rotate-180" aria-hidden />
+          Back to Bag
         </Link>
 
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">

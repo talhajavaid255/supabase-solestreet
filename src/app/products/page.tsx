@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import { ArrowRight, Search, SlidersHorizontal } from "lucide-react";
 import ProductCard from "@/components/product-card";
 import Reveal from "@/components/reveal";
 import { createClient } from "@/lib/supabase/server";
@@ -137,7 +138,10 @@ export default async function ProductsPage({
           {/* Filters */}
           <aside className="self-start rounded-2xl border border-zinc-200 bg-white p-6">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-xl font-black">Filters</h2>
+              <h2 className="inline-flex items-center gap-2 text-xl font-black">
+                <SlidersHorizontal className="h-5 w-5" aria-hidden />
+                Filters
+              </h2>
 
               <Link
                 href="/products"
@@ -235,9 +239,10 @@ export default async function ProductsPage({
 
               <button
                 type="submit"
-                className="pressable w-full rounded-full bg-zinc-950 px-5 py-4 text-sm font-bold text-white hover:bg-orange-600"
+                className="pressable inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 py-4 text-sm font-bold text-white hover:bg-orange-600"
               >
-                Apply Filters →
+                Apply Filters
+                <ArrowRight className="h-4 w-4" aria-hidden />
               </button>
             </form>
           </aside>
@@ -266,6 +271,9 @@ export default async function ProductsPage({
 
             {!error && products.length === 0 && (
               <div className="rounded-2xl border border-zinc-200 bg-white px-6 py-20 text-center">
+                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 text-zinc-600">
+                  <Search className="h-7 w-7" aria-hidden />
+                </div>
                 <h2 className="text-2xl font-black">
                   No shoes found
                 </h2>

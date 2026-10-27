@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 import CartItemControls from "@/components/cart-item-controls";
 
 type CartItem = {
@@ -114,7 +115,9 @@ export default async function CartPage() {
 
         {!loadError && items.length === 0 ? (
           <div className="mt-12 rounded-3xl border border-zinc-200 bg-white px-6 py-20 text-center">
-            <div className="text-5xl">🛍️</div>
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-zinc-100 text-zinc-700">
+              <ShoppingBag className="h-7 w-7" aria-hidden />
+            </div>
             <h2 className="mt-6 text-2xl font-black">
               Your bag is empty
             </h2>
@@ -123,9 +126,10 @@ export default async function CartPage() {
             </p>
             <Link
               href="/products"
-              className="mt-8 inline-block rounded-full bg-zinc-950 px-8 py-4 font-bold text-white hover:bg-orange-600"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-zinc-950 px-8 py-4 font-bold text-white hover:bg-orange-600"
             >
               Explore Shoes
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
         ) : !loadError ? (
@@ -240,9 +244,10 @@ export default async function CartPage() {
 ) : (
   <Link
     href="/checkout"
-    className="pressable mt-8 block w-full rounded-full bg-zinc-950 px-6 py-4 text-center font-bold text-white hover:bg-orange-600"
+    className="pressable mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-6 py-4 text-center font-bold text-white hover:bg-orange-600"
   >
-    Proceed to Checkout →
+    Proceed to Checkout
+    <ArrowRight className="h-4 w-4" aria-hidden />
   </Link>
 )}
 

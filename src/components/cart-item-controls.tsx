@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Trash2 } from "lucide-react";
 import {
   updateCartQuantity,
   removeCartItem,
@@ -95,8 +96,9 @@ export default function CartItemControls({
         <button
           onClick={remove}
           disabled={busy}
-          className="text-sm font-semibold text-red-600 hover:underline disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600 hover:underline disabled:opacity-50"
         >
+          <Trash2 className="h-4 w-4" aria-hidden />
           Remove
         </button>
       </div>
