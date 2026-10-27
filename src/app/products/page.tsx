@@ -2,14 +2,18 @@
 import Link from "next/link";
 import { ArrowRight, Search, SlidersHorizontal } from "lucide-react";
 import ProductCard from "@/components/product-card";
+import ProductsPagination from "@/components/products-pagination";
 import Reveal from "@/components/reveal";
 import { createClient } from "@/lib/supabase/server";
+
+const PAGE_SIZE = 9;
 
 type SearchParams = {
   q?: string;
   brand?: string;
   category?: string;
   sort?: string;
+  page?: string;
 };
 
 export default async function ProductsPage({
@@ -24,6 +28,10 @@ export default async function ProductsPage({
   const brand = params.brand ?? "";
   const category = params.category ?? "";
   const sort = params.sort ?? "newest";
+  const requestedPage = Math.max(
+    1,
+    Number.parseInt(params.page ?? "1", 10) || 1,
+  );
 
   // Load filter options
   const [brandsResult, categoriesResult] = await Promise.all([
@@ -40,7 +48,8 @@ export default async function ProductsPage({
   // Query product catalog
   let query = supabase
     .from("products")
-    .select(`
+    .select(
+      `
       id,
       name,
       slug,
@@ -49,7 +58,9 @@ export default async function ProductsPage({
       is_featured,
       brands(name),
       product_images(image_url, alt_text, sort_order)
-    `)
+    `,
+      { count: "exact" },
+    )
     .eq("is_active", true);
 
   // Apply PostgreSQL filters
@@ -86,7 +97,20 @@ export default async function ProductsPage({
       query = query.order("created_at", { ascending: false });
   }
 
-  const { data, error } = await query;
+  const from = (requestedPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
+  let { data, error, count } = await query.range(from, to);
+
+  const total = count ?? 0;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const page = Math.min(requestedPage, totalPages);
+
+  if (page !== requestedPage && total > 0) {
+    const retryFrom = (page - 1) * PAGE_SIZE;
+    const retry = await query.range(retryFrom, retryFrom + PAGE_SIZE - 1);
+    data = retry.data;
+    error = retry.error;
+  }
 
   type Product = {
     id: string;
@@ -253,8 +277,11 @@ export default async function ProductsPage({
               <p className="text-sm text-zinc-500">
                 Showing{" "}
                 <span className="font-bold text-zinc-900">
-                  {products.length}
+                  {total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1}–
+                  {Math.min(page * PAGE_SIZE, total)}
                 </span>{" "}
+                of{" "}
+                <span className="font-bold text-zinc-900">{total}</span>{" "}
                 products
               </p>
 
@@ -296,6 +323,12 @@ export default async function ProductsPage({
                 </Reveal>
               ))}
             </div>
+
+            <ProductsPagination
+              page={page}
+              totalPages={totalPages}
+              filters={{ q: search, brand, category, sort }}
+            />
           </div>
         </div>
       </section>
